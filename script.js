@@ -1,13 +1,15 @@
-const calculate = () => {
-  let p = document.getElementById("principle").value;
-  let r = document.getElementById("rate").value;
-  let t = document.getElementById("time").value;
-  let simpleInterest = (p * r * t) / 100;
-  let amount = p - simpleInterest;
+function calculate() {
+  const principal = Number(document.getElementById("principal").value);
+  const rate = Number(document.getElementById("rate").value);
+  const time = Number(document.getElementById("time").value);
 
-  let result = document.getElementById("result");
+  if (isNaN(principal) || isNaN(rate) || isNaN(time)) {
+    document.getElementById("result").innerText = "Invalid input";
+    return;
+  }
 
-  result.innerHTML = `<div>Principal Amount: <span>${p.toFixed(2)}</span></div>
-  <div>Total Interest: <span>${simpleInterest.toFixed(2)}</span></div>
-  <div>Total Amount: <span>${amount.toFixed(2)}</span></div>`;
-};
+  const interest = (principal * rate * time) / 100;
+  document.getElementById("result").innerText = interest;
+}
+
+module.exports = calculate;
